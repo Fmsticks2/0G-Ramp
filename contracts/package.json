@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js",
+    "deposit": "hardhat run scripts/deposit.js",
+    "withdraw": "hardhat run scripts/withdraw.js",
+    "receipt": "hardhat run scripts/receipt.js",
+    "test": "hardhat test"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +19,7 @@
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",
     "@openzeppelin/contracts": "^5.4.0",
     "dotenv": "^17.2.3",
-    "hardhat": "^3.0.7"
+    "ethers": "^6.13.0",
+    "hardhat": "^2.26.3"
   }
 }
