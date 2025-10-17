@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import { createOnRampSession } from '../lib/api'
+import Card from './ui/Card'
+import Button from './ui/Button'
+import Input from './ui/Input'
+import Select from './ui/Select'
 
 type Props = { address?: string; isConnected: boolean; onComplete?: () => void }
 
@@ -25,29 +29,29 @@ export default function OnRampWidget({ address, isConnected, onComplete }: Props
   }
 
   return (
-    <div>
+    <Card padded>
       <div className="section-title">On-Ramp</div>
       <form onSubmit={onSubmit}>
-        <div className="row">
+        <div className="form-row">
           <div>
             <label>Fiat amount</label>
-            <input value={fiatAmount} onChange={(e) => setFiatAmount(e.target.value)} placeholder="100" />
+            <Input value={fiatAmount} onChange={(e) => setFiatAmount(e.target.value)} placeholder="100" />
           </div>
           <div>
             <label>Currency</label>
-            <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+            <Select value={currency} onChange={(e) => setCurrency(e.target.value)}>
               <option>USD</option>
               <option>EUR</option>
-            </select>
+            </Select>
           </div>
         </div>
-        <div className="actions" style={{ marginTop: 12 }}>
-          <button className="glow-btn" disabled={loading}>{loading ? 'Creating...' : 'Create Payment'}</button>
+        <div className="form-actions mt-8">
+          <Button variant="primary" disabled={loading}>{loading ? 'Creating...' : 'Create Payment'}</Button>
           {paymentUrl && (
-            <a className="glow-btn" href={paymentUrl} target="_blank" rel="noreferrer" style={{ background: '#1A1A1A', color: '#EAEAEA', border: '1px solid #222' }}>Open Checkout</a>
+            <a className="btn btn-secondary" href={paymentUrl} target="_blank" rel="noreferrer">Open Checkout</a>
           )}
         </div>
       </form>
-    </div>
+    </Card>
   )
 }

@@ -5,13 +5,14 @@ import OnRampWidget from '../components/OnRampWidget'
 import OffRampWidget from '../components/OffRampWidget'
 import StatCard from '../components/StatCard'
 import SectionHeader from '../components/SectionHeader'
+import Card from '../components/ui/Card'
 
 export default function Dashboard() {
   const { address, isConnected } = useAccount()
   const [refreshKey, setRefreshKey] = useState(0)
 
   return (
-    <div style={{ display: 'grid', gap: 16 }}>
+    <div className="grid">
       {/* KPIs */}
       <div className="grid grid-cols-3">
         <StatCard title="24h Volume" value="$182,940" hint="On/Off ramp total" />
@@ -20,25 +21,25 @@ export default function Dashboard() {
       </div>
 
       {/* Account & Balance */}
-      <div className="card" style={{ padding: 20 }}>
+      <Card padded>
         <SectionHeader title="Account & Balance" subtitle={address ? `${address}` : 'Connect your wallet to view balances'} />
         <BalanceCard address={address} isConnected={isConnected} />
-      </div>
+      </Card>
 
       {/* On-Ramp / Off-Ramp */}
       <div className="grid grid-cols-2">
-        <div className="card" style={{ padding: 20 }}>
+        <Card padded>
           <SectionHeader title="On-Ramp" subtitle="Buy stablecoins with fiat" />
           <OnRampWidget address={address} isConnected={isConnected} onComplete={() => setRefreshKey(refreshKey+1)} />
-        </div>
-        <div className="card" style={{ padding: 20 }}>
+        </Card>
+        <Card padded>
           <SectionHeader title="Off-Ramp" subtitle="Sell stablecoins to fiat" />
           <OffRampWidget address={address} isConnected={isConnected} onComplete={() => setRefreshKey(refreshKey+1)} />
-        </div>
+        </Card>
       </div>
 
       {/* Activity */}
-      <div className="card" style={{ padding: 20 }}>
+      <Card padded>
         <SectionHeader title="Recent Activity" subtitle="Last 10 operations" />
         <table>
           <thead>
@@ -62,7 +63,7 @@ export default function Dashboard() {
               ))}
           </tbody>
         </table>
-      </div>
+      </Card>
     </div>
   )
 }

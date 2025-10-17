@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import Card from './ui/Card'
+import Button from './ui/Button'
+import Input from './ui/Input'
+import Select from './ui/Select'
 
 type Props = { address?: string; isConnected: boolean; onComplete?: () => void }
 
@@ -15,26 +19,26 @@ export default function OffRampWidget({ address, isConnected, onComplete }: Prop
   }
 
   return (
-    <div>
+    <Card padded>
       <div className="section-title">Off-Ramp</div>
       <form onSubmit={onSubmit}>
-        <div className="row">
+        <div className="form-row">
           <div>
             <label>USDC amount</label>
-            <input value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="100" />
+            <Input value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="100" />
           </div>
           <div>
             <label>Payout method</label>
-            <select value={payoutMethod} onChange={(e) => setPayoutMethod(e.target.value)}>
+            <Select value={payoutMethod} onChange={(e) => setPayoutMethod(e.target.value)}>
               <option value="bank">Bank Transfer</option>
               <option value="paypal">PayPal</option>
-            </select>
+            </Select>
           </div>
         </div>
-        <div className="actions" style={{ marginTop: 12 }}>
-          <button className="glow-btn">Request Payout</button>
+        <div className="form-actions mt-8">
+          <Button variant="secondary">Request Payout</Button>
         </div>
       </form>
-    </div>
+    </Card>
   )
 }

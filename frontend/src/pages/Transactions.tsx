@@ -3,6 +3,10 @@ import { useAccount } from 'wagmi'
 import { getTransactionsByWallet } from '../lib/api'
 import Badge from '../components/Badge'
 import SectionHeader from '../components/SectionHeader'
+import Card from '../components/ui/Card'
+import Button from '../components/ui/Button'
+import Input from '../components/ui/Input'
+import Select from '../components/ui/Select'
 
 function shorten(hash?: string) {
   if (!hash) return '-'
@@ -51,11 +55,11 @@ export default function Transactions() {
   }
 
   return (
-    <div className="card" style={{ padding: 20 }}>
+    <Card padded>
       <SectionHeader 
         title="Transaction History" 
         subtitle={address ? `Showing results for ${address}` : 'Connect your wallet to view transactions'}
-        right={<button className="glow-btn secondary" onClick={() => {
+        right={<Button variant="secondary" onClick={() => {
           const header = ['Date','Type','Amount','TxHash','0G CID','Status']
           const lines = filtered.map(r => [new Date(r.createdAt).toISOString(), r.type, r.amount, r.txHash || '', r.storageCid || '', r.status].join(','))
           const csv = [header.join(','), ...lines].join('\n')
@@ -66,7 +70,7 @@ export default function Transactions() {
           a.download = 'transactions.csv'
           a.click()
           URL.revokeObjectURL(url)
-        }}>Export CSV</button>}
+        }}>Export CSV</Button>}
       />
 
       {/* Filters */}
@@ -74,18 +78,18 @@ export default function Transactions() {
         <div className={`chip ${typeFilter==='all'?'active':''}`} onClick={()=>setTypeFilter('all')}>All</div>
         <div className={`chip ${typeFilter==='onramp'?'active':''}`} onClick={()=>setTypeFilter('onramp')}>On-Ramp</div>
         <div className={`chip ${typeFilter==='offramp'?'active':''}`} onClick={()=>setTypeFilter('offramp')}>Off-Ramp</div>
-        <div style={{ marginLeft: 'auto', display:'flex', gap:8, alignItems:'center' }}>
+        <div className="inline ml-auto">
           <label htmlFor="search">Search</label>
-          <input id="search" placeholder="tx hash, CID, amount" value={search} onChange={e=>setSearch(e.target.value)} />
+          <Input id="search" placeholder="tx hash, CID, amount" value={search} onChange={e=>setSearch(e.target.value)} />
         </div>
-        <div style={{ display:'flex', gap:8 }}>
+        <div className="inline">
           <label htmlFor="status">Status</label>
-          <select id="status" value={statusFilter} onChange={e=>setStatusFilter(e.target.value as any)}>
+          <Select id="status" value={statusFilter} onChange={e=>setStatusFilter(e.target.value as any)}>
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="pending">Pending</option>
             <option value="failed">Failed</option>
-          </select>
+          </Select>
         </div>
       </div>
 
@@ -116,6 +120,6 @@ export default function Transactions() {
           </tbody>
         </table>
       )}
-    </div>
+    </Card>
   )
 }

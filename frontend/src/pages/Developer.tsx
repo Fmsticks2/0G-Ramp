@@ -1,8 +1,10 @@
 import SectionHeader from '../components/SectionHeader'
+import Card from '../components/ui/Card'
+import Button from '../components/ui/Button'
 
 function CopyButton({ text }: { text: string }) {
   return (
-    <button className="glow-btn secondary" onClick={() => navigator.clipboard.writeText(text)}>Copy</button>
+    <Button variant="secondary" onClick={() => navigator.clipboard.writeText(text)}>Copy</Button>
   )
 }
 
@@ -22,8 +24,8 @@ fetch('/api/onramp/create-session', {
 `
 
   return (
-    <div style={{ display: 'grid', gap: 16 }}>
-      <div className="card" style={{ padding: 20 }}>
+    <div className="grid grid-cols-1">
+      <Card padded>
         <SectionHeader title="Developer API" subtitle="Endpoints, webhooks, and quick-start snippets" />
         <div className="grid grid-cols-2">
           <div>
@@ -57,20 +59,20 @@ fetch('/api/onramp/create-session', {
           </div>
           <div>
             <div className="section-title">Quick Start</div>
-            <pre style={{ background: '#0B0B0B', padding: 16, borderRadius: 12 }}>{snippet}</pre>
-            <div style={{ marginTop: 8 }}>
+            <pre className="code-block">{snippet}</pre>
+            <div className="mt-8">
               <CopyButton text={snippet} />
             </div>
           </div>
         </div>
-      </div>
+      </Card>
 
-      <div className="card" style={{ padding: 20 }}>
+      <Card padded>
         <SectionHeader title="0G-Galileo-Testnet" subtitle="Network settings for integration" />
         <div className="grid grid-cols-2">
           <div>
             <div className="section-title">Chain</div>
-            <ul style={{ marginTop: 8, display:'grid', gap: 6 }}>
+            <ul className="list-grid">
               <li className="muted">Name: 0G-Galileo-Testnet</li>
               <li className="muted">RPC: {rpc}</li>
               <li className="muted">Chain ID: {chainId}</li>
@@ -83,7 +85,7 @@ fetch('/api/onramp/create-session', {
             <p className="muted">Use WalletConnect with your project ID in <code>.env</code>. Configure the chain ID to <code>16602</code> and RPC to <code>evmrpc-testnet.0g.ai</code> for the Galileo testnet.</p>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   )
 }

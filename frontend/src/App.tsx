@@ -1,27 +1,16 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
 import Developer from './pages/Developer'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 import './App.css'
 
 function App() {
   return (
     <div className="app">
-      <header className="app-header">
-        <div className="header-left">
-          <Link to="/" className="logo">Velora</Link>
-        </div>
-        <nav className="header-nav">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/transactions">Transactions</Link>
-          <Link to="/developers">Developers</Link>
-        </nav>
-        <div className="header-right">
-          <ConnectButton />
-        </div>
-      </header>
+      <Navbar />
       <main className="app-main">
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -30,6 +19,7 @@ function App() {
           <Route path="/developers" element={<Developer />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   )
 }
