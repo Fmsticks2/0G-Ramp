@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
-import { getTransactionsByWallet, TxRow } from '../lib/api'
+import { getTransactionsByWallet, type TxRow } from '../lib/api'
 import { useAccount } from 'wagmi'
 
 export default function Transactions() {

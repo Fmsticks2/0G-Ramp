@@ -47,3 +47,29 @@ export async function getTransactionsByWallet(wallet: string) {
   if (!res.ok) throw new Error('Failed to load transactions')
   return res.json() as Promise<TxRow[]>
 }
+
+export async function getApiKey(wallet: string) {
+  const res = await fetch(`${API_BASE}/api/dev/apikey/${wallet}`)
+  if (!res.ok) throw new Error('Failed to fetch API key')
+  return res.json() as Promise<{ apiKey: string | null }>
+}
+
+export async function generateApiKey(wallet: string) {
+  const res = await fetch(`${API_BASE}/api/dev/apikey`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ wallet }),
+  })
+  if (!res.ok) throw new Error('Failed to generate API key')
+  return res.json() as Promise<{ apiKey: string }>
+}
+
+export async function submitKyc(params: { walletAddress: string; cid: string; mime?: string; size?: number }) {
+  const res = await fetch(`${API_BASE}/api/kyc/submit`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(params),
+  })
+  if (!res.ok) throw new Error('Failed to submit KYC')
+  return res.json() as Promise<{ cid: string }>
+}

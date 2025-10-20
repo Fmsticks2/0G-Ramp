@@ -8,7 +8,7 @@ const rateLimit = require('express-rate-limit')
 const app = express()
 
 app.use(helmet())
-app.use(cors({ origin: ['http://localhost:5173'], credentials: true }))
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5174'], credentials: true }))
 app.use(morgan('dev'))
 app.use(express.json())
 
@@ -21,6 +21,8 @@ app.use('/api/onramp', require('./routes/onramp'))
 app.use('/api/offramp', require('./routes/offramp'))
 app.use('/api/webhook', require('./routes/webhook'))
 app.use('/api/transactions', require('./routes/transactions'))
+app.use('/api/dev', require('./routes/dev'))
+app.use('/api/kyc', require('./routes/kyc'))
 
 app.use((err, req, res, next) => {
   console.error('Error:', err)

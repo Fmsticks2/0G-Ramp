@@ -1,10 +1,13 @@
-import { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import KYCModal from './KYCModal'
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation()
+  const [kycOpen, setKycOpen] = useState(false)
+  
   return (
     <div className="min-h-screen bg-gradient bg-grid text-white flex">
       <aside className="w-64 hidden md:flex flex-col border-r border-base-600 p-4">
@@ -16,6 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <NavItem to="/" icon="mdi:home" label="Home" active={pathname === '/'} />
           <NavItem to="/dashboard" icon="mdi:view-dashboard" label="Dashboard" active={pathname === '/dashboard'} />
           <NavItem to="/transactions" icon="mdi:clipboard-text" label="Transactions" active={pathname === '/transactions'} />
+          <NavItem to="/developers" icon="mdi:code-tags" label="Developers" active={pathname === '/developers'} />
         </nav>
         <div className="mt-auto">
           <div className="text-xs text-gray-400">Dark • Professional • 0G</div>
@@ -27,10 +31,17 @@ export default function Layout({ children }: { children: ReactNode }) {
             <Icon icon="mdi:lightning-bolt" className="text-accent" />
             <span className="font-medium">RampFlow</span>
           </div>
-          <ConnectButton />
+          <div className="flex items-center gap-3">
+            <button onClick={() => setKycOpen(true)} className="px-3 py-2 rounded-lg bg-base-800 hover:bg-base-700 flex items-center gap-2">
+              <Icon icon="mdi:account-check" />
+              <span>KYC</span>
+            </button>
+            <ConnectButton />
+          </div>
         </header>
         <main className="p-6">{children}</main>
       </div>
+      <KYCModal open={kycOpen} onClose={() => setKycOpen(false)} />
     </div>
   )
 }
