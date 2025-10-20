@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global dark theme base */
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #0A0A0A;
+  color: #fff;
+}
+
+/* Futuristic subtle gradient + noise overlay */
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.bg-gradient {
+  background-image: radial-gradient(1200px 600px at 50% -10%, rgba(255, 79, 216, 0.08), transparent 60%),
+    radial-gradient(800px 400px at 80% 120%, rgba(255, 79, 216, 0.06), transparent 60%);
+}
+
+/**** Component layer tweaks ****/
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium transition-colors;
+    @apply bg-base-700 hover:bg-base-600 text-white shadow-glow;
+  }
+  .btn-accent {
+    @apply bg-accent hover:bg-accent-600 text-white shadow-glow;
+  }
+  .card {
+    @apply rounded-2xl border border-base-600 bg-base-700/80 backdrop-blur-md;
+  }
+  .input {
+    @apply w-full rounded-xl bg-base-800 border border-base-600 px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+}
