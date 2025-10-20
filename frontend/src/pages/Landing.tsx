@@ -33,10 +33,10 @@ export default function Landing() {
         </motion.p>
 
         <div className="mt-10 flex gap-4">
-          <Link to="/dashboard" className="btn-accent btn">
+          <Link to="/dashboard" className="inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium transition-colors bg-accent hover:bg-accent-600 text-white shadow-glow">
             <Icon icon="mdi:lightning-bolt" className="mr-2" /> On-Ramp / Off-Ramp
           </Link>
-          <Link to="/transactions" className="btn">
+          <Link to="/transactions" className="inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium transition-colors bg-base-700 hover:bg-base-600 text-white shadow-glow">
             <Icon icon="mdi:clipboard-text" className="mr-2" /> Transactions
           </Link>
         </div>

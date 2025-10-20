@@ -22,7 +22,7 @@ export default function ContractInfo() {
   })
 
   return (
-    <div className="card p-4 text-sm text-gray-300">
+    <div className="rounded-2xl border border-base-600 bg-base-700/80 backdrop-blur-md p-4 text-sm text-gray-300">
       <div className="font-medium text-white">Chain & Contract</div>
       <div className="mt-1">Network: 0G Galileo (16602)</div>
       <div className="mt-1">RampAdmin: <span className="text-accent">{adminAddress}</span></div>

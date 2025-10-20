@@ -28,7 +28,7 @@ export default function Transactions() {
 
   return (
     <Layout>
-      <div className="card p-6">
+      <div className="rounded-2xl border border-base-600 bg-base-700/80 backdrop-blur-md p-6">
         <div className="text-xl font-semibold mb-4">Transactions</div>
         {!address && <div className="text-sm text-gray-400">Connect wallet to view history.</div>}
         {loading && <div className="text-sm text-gray-400">Loading…</div>}
