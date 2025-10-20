@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 import Layout from '../components/Layout'
 import { getTransactionsByWallet, type TxRow } from '../lib/api'
 import { useAccount } from 'wagmi'
@@ -26,46 +28,258 @@ export default function Transactions() {
     load()
   }, [address])
 
+  const getStatusColor = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'completed': return 'text-pink-400 bg-pink-400/10'
+      case 'pending': return 'text-pink-300 bg-pink-300/10'
+      case 'failed': return 'text-pink-500 bg-pink-500/10'
+      default: return 'text-pink-400 bg-pink-400/10'
+    }
+  }
+
+  const getTypeIcon = (type: string) => {
+    switch (type.toLowerCase()) {
+      case 'onramp': return 'mdi:arrow-down-circle'
+      case 'offramp': return 'mdi:arrow-up-circle'
+      default: return 'mdi:swap-horizontal'
+    }
+  }
+
   return (
     <Layout>
-      <div className="rounded-2xl border border-base-600 bg-base-700/80 backdrop-blur-md p-6">
-        <div className="text-xl font-semibold mb-4">Transactions</div>
-        {!address && <div className="text-sm text-gray-400">Connect wallet to view history.</div>}
-        {loading && <div className="text-sm text-gray-400">Loading…</div>}
-        {error && <div className="text-sm text-red-400">{error}</div>}
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
-            <thead className="text-left text-gray-400">
-              <tr>
-                <th className="py-2">Date</th>
-                <th className="py-2">Type</th>
-                <th className="py-2">Amount</th>
-                <th className="py-2">TxHash</th>
-                <th className="py-2">0G CID</th>
-                <th className="py-2">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr key={r.id} className="border-t border-base-600">
-                  <td className="py-2">{new Date(r.createdAt).toLocaleString()}</td>
-                  <td className="py-2 capitalize">{r.type}</td>
-                  <td className="py-2">{r.amount}</td>
-                  <td className="py-2">
-                    {r.txHash ? (
-                      <a className="text-accent underline" href={`https://blockexplorer/tx/${r.txHash}`} target="_blank" rel="noreferrer">{r.txHash.slice(0, 10)}…</a>
-                    ) : (
-                      '-'
-                    )}
-                  </td>
-                  <td className="py-2">{r.storageCid || '-'}</td>
-                  <td className="py-2">{r.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Animated Background */}
+      <div className="fixed inset-0 bg-grid bg-gradient pointer-events-none" />
+      
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative mb-8 text-center"
+      >
+        <motion.h1 
+          className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-pink-400 to-pink-300 bg-clip-text text-transparent"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Transaction History
+        </motion.h1>
+        <motion.p 
+          className="text-lg text-gray-300 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          Track all your on-ramp and off-ramp transactions in one place
+        </motion.p>
+      </motion.div>
+
+      {/* Transaction Stats */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8"
+      >
+        {[
+          { icon: "mdi:check-circle", label: "Completed", value: rows.filter(r => r.status === 'completed').length, color: "from-pink-400 to-pink-500" },
+          { icon: "mdi:clock-outline", label: "Pending", value: rows.filter(r => r.status === 'pending').length, color: "from-pink-300 to-pink-400" },
+          { icon: "mdi:close-circle", label: "Failed", value: rows.filter(r => r.status === 'failed').length, color: "from-pink-500 to-pink-600" },
+          { icon: "mdi:chart-line", label: "Total", value: rows.length, color: "from-pink-400 to-pink-500" }
+        ].map((stat, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.02, y: -2 }}
+            className="relative group"
+          >
+            <div className="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 rounded-xl blur-sm transition-opacity duration-300" />
+            <div className="relative bg-base-800/30 backdrop-blur-sm border border-base-600 rounded-xl p-4 hover:border-pink-500/30 transition-all duration-300">
+              <div className={`inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${stat.color} mb-3`}>
+                <Icon icon={stat.icon} className="text-lg text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-1">{stat.value}</h3>
+              <p className="text-sm text-gray-400">{stat.label}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Transactions Table */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="relative group"
+      >
+        <div className="absolute inset-0 bg-pink-500/3 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="relative rounded-xl border border-base-600 bg-base-800/30 backdrop-blur-md p-6 hover:border-pink-500/30 transition-all duration-300">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-xl font-bold text-white flex items-center">
+              <Icon icon="mdi:history" className="mr-2 text-pink-400" />
+              Recent Transactions
+            </h2>
+            {address && (
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.reload()}
+                className="inline-flex items-center px-3 py-2 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 border border-pink-500/30 hover:border-pink-500/50 transition-all duration-300"
+              >
+                <Icon icon="mdi:refresh" className="mr-2" />
+                Refresh
+              </motion.button>
+            )}
+          </div>
+
+          {!address && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-10"
+            >
+              <Icon icon="mdi:wallet-outline" className="text-5xl text-gray-500 mb-3 mx-auto" />
+              <p className="text-lg text-gray-400 mb-3">Connect your wallet to view transaction history</p>
+              <p className="text-sm text-gray-500">Your transactions will appear here once you connect</p>
+            </motion.div>
+          )}
+
+          {loading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-10"
+            >
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-pink-500/10 mb-3">
+                <Icon icon="mdi:loading" className="text-2xl text-pink-400 animate-spin" />
+              </div>
+              <p className="text-lg text-gray-400">Loading transactions...</p>
+            </motion.div>
+          )}
+
+          {error && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-10"
+            >
+              <Icon icon="mdi:alert-circle" className="text-5xl text-pink-400 mb-3 mx-auto" />
+              <p className="text-lg text-pink-400 mb-2">Error loading transactions</p>
+              <p className="text-sm text-gray-500">{error}</p>
+            </motion.div>
+          )}
+
+          {address && !loading && !error && rows.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-10"
+            >
+              <Icon icon="mdi:database-outline" className="text-5xl text-gray-500 mb-3 mx-auto" />
+              <p className="text-lg text-gray-400 mb-3">No transactions found</p>
+              <p className="text-sm text-gray-500">Your transaction history will appear here</p>
+            </motion.div>
+          )}
+
+          {rows.length > 0 && (
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr className="border-b border-base-600">
+                    <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Date</th>
+                    <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Type</th>
+                    <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Amount</th>
+                    <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Transaction</th>
+                    <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Storage</th>
+                    <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r, index) => (
+                    <motion.tr
+                      key={r.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className="border-b border-base-700/50 hover:bg-base-700/20 transition-colors duration-200"
+                    >
+                      <td className="py-3 px-2 text-gray-300">
+                        {new Date(r.createdAt).toLocaleDateString()}
+                        <div className="text-xs text-gray-500">
+                          {new Date(r.createdAt).toLocaleTimeString()}
+                        </div>
+                      </td>
+                      <td className="py-3 px-2">
+                        <div className="flex items-center">
+                          <Icon icon={getTypeIcon(r.type)} className="mr-2 text-pink-400" />
+                          <span className="capitalize text-white font-medium text-sm">{r.type}</span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-2 text-white font-semibold text-sm">{r.amount}</td>
+                      <td className="py-3 px-2">
+                        {r.txHash ? (
+                          <a 
+                            className="inline-flex items-center text-pink-400 hover:text-pink-300 transition-colors text-sm" 
+                            href={`https://blockexplorer/tx/${r.txHash}`} 
+                            target="_blank" 
+                            rel="noreferrer"
+                          >
+                            {r.txHash.slice(0, 10)}…
+                            <Icon icon="mdi:external-link" className="ml-1 text-xs" />
+                          </a>
+                        ) : (
+                          <span className="text-gray-500 text-sm">-</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-2">
+                        {r.storageCid ? (
+                          <span className="text-pink-400 font-mono text-xs">
+                            {r.storageCid.slice(0, 10)}…
+                          </span>
+                        ) : (
+                          <span className="text-gray-500 text-sm">-</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-2">
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(r.status)}`}>
+                          {r.status}
+                        </span>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
-      </div>
+      </motion.div>
+
+      {/* Floating Elements */}
+      <motion.div
+        animate={{ 
+          y: [0, -15, 0],
+          rotate: [0, 3, 0]
+        }}
+        transition={{ 
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="fixed top-1/4 left-10 w-12 h-12 bg-gradient-to-br from-pink-500/10 to-pink-400/10 rounded-xl backdrop-blur-sm border border-pink-500/20 pointer-events-none"
+      />
+      <motion.div
+        animate={{ 
+          y: [0, 12, 0],
+          rotate: [0, -2, 0]
+        }}
+        transition={{ 
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1
+        }}
+        className="fixed top-1/3 right-16 w-10 h-10 bg-gradient-to-br from-pink-400/10 to-pink-300/10 rounded-lg backdrop-blur-sm border border-pink-400/20 pointer-events-none"
+      />
     </Layout>
   )
 }
