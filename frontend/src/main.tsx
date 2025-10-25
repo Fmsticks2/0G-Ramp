@@ -8,6 +8,8 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { wagmiConfig } from './lib/wagmi'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
+import OnRamp from './pages/OnRamp'
+import OffRamp from './pages/OffRamp'
 import Transactions from './pages/Transactions'
 import Developers from './pages/Developers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -23,6 +25,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/onramp" element={<OnRamp />} />
+              <Route path="/offramp" element={<OffRamp />} />
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/developers" element={<Developers />} />
             </Routes>

@@ -70,6 +70,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           <nav className="flex flex-col gap-2">
             <NavItem to="/" icon="mdi:home" label="Home" active={pathname === '/'} collapsed={sidebarCollapsed} />
             <NavItem to="/dashboard" icon="mdi:view-dashboard" label="Dashboard" active={pathname === '/dashboard'} collapsed={sidebarCollapsed} />
+            <NavItem to="/onramp" icon="mdi:bank-transfer-in" label="On-Ramp" active={pathname === '/onramp'} collapsed={sidebarCollapsed} />
+            <NavItem to="/offramp" icon="mdi:bank-transfer-out" label="Off-Ramp" active={pathname === '/offramp'} collapsed={sidebarCollapsed} />
             <NavItem to="/transactions" icon="mdi:clipboard-text" label="Transactions" active={pathname === '/transactions'} collapsed={sidebarCollapsed} />
             <NavItem to="/developers" icon="mdi:code-tags" label="Developers" active={pathname === '/developers'} collapsed={sidebarCollapsed} />
           </nav>

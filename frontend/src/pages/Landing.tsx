@@ -3,16 +3,16 @@ import type { Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Icon } from '@iconify/react'
-import { useState, useEffect } from 'react'
 
 export default function Landing() {
-  const [scrollY, setScrollY] = useState(0)
+  // Removed unused scrollY state
+  // const [scrollY, setScrollY] = useState(0)
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  // useEffect(() => {
+  //   const handleScroll = () => setScrollY(window.scrollY)
+  //   window.addEventListener('scroll', handleScroll)
+  //   return () => window.removeEventListener('scroll', handleScroll)
+  // }, [])
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
