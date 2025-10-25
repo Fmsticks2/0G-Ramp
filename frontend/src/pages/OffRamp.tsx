@@ -53,8 +53,8 @@ export default function OffRamp() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl mb-6">
-              <Icon icon="mdi:bank-transfer-out" className="text-3xl text-blue-600 dark:text-blue-400" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-black/40 border border-white/10 rounded-2xl mb-6 backdrop-blur-sm">
+              <Icon icon="mdi:bank-transfer-out" className="text-3xl text-white" />
             </div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Off-Ramp Service
@@ -73,12 +73,12 @@ export default function OffRamp() {
               transition={{ delay: 0.1 }}
               className="lg:col-span-2"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-8">
+              <div className="bg-black/50 rounded-2xl shadow-lg shadow-black/30 border border-white/10 p-8 backdrop-blur-xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                    <Icon icon="mdi:currency-usd" className="text-blue-600 dark:text-blue-400" />
+                  <div className="w-8 h-8 bg-black/40 border border-white/10 rounded-lg flex items-center justify-center">
+                    <Icon icon="mdi:currency-usd" className="text-white" />
                   </div>
-                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                  <h2 className="text-2xl font-semibold text-white">
                     Withdraw USDC
                   </h2>
                 </div>
@@ -95,7 +95,7 @@ export default function OffRamp() {
                         min="1"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-white focus:border-white transition-colors"
                         placeholder="Enter USDC amount"
                       />
                       <div className="absolute inset-y-0 right-0 flex items-center pr-4">
@@ -118,31 +118,27 @@ export default function OffRamp() {
                         onClick={() => setPayoutMethod('bank')}
                         className={`p-4 rounded-xl border-2 transition-all ${
                           payoutMethod === 'bank'
-                            ? 'border-blue-400/50 bg-blue-500/10 backdrop-blur-sm'
+                            ? 'border-white/30 bg-white/10 backdrop-blur-sm'
                             : 'border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/20 hover:bg-white/10'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             payoutMethod === 'bank'
-                              ? 'bg-blue-500/20 backdrop-blur-sm border border-blue-400/30'
+                              ? 'bg-white/10 backdrop-blur-sm border border-white/30'
                               : 'bg-white/10 backdrop-blur-sm border border-white/20'
                           }`}>
                             <Icon 
                               icon="mdi:bank" 
                               className={`text-xl ${
                                 payoutMethod === 'bank'
-                                  ? 'text-blue-400'
+                                  ? 'text-white'
                                   : 'text-gray-300'
                               }`}
                             />
                           </div>
                           <div className="text-left">
-                            <h3 className={`font-medium ${
-                              payoutMethod === 'bank'
-                                ? 'text-blue-400'
-                                : 'text-white'
-                            }`}>
+                            <h3 className="font-medium text-white">
                               Bank Transfer
                             </h3>
                             <p className="text-sm text-gray-400">
@@ -158,31 +154,27 @@ export default function OffRamp() {
                         onClick={() => setPayoutMethod('mobile')}
                         className={`p-4 rounded-xl border-2 transition-all ${
                           payoutMethod === 'mobile'
-                            ? 'border-blue-400/50 bg-blue-500/10 backdrop-blur-sm'
+                            ? 'border-white/30 bg-white/10 backdrop-blur-sm'
                             : 'border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/20 hover:bg-white/10'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                             payoutMethod === 'mobile'
-                              ? 'bg-blue-500/20 backdrop-blur-sm border border-blue-400/30'
+                              ? 'bg-white/10 backdrop-blur-sm border border-white/30'
                               : 'bg-white/10 backdrop-blur-sm border border-white/20'
                           }`}>
                             <Icon 
                               icon="mdi:cellphone" 
                               className={`text-xl ${
                                 payoutMethod === 'mobile'
-                                  ? 'text-blue-400'
+                                  ? 'text-white'
                                   : 'text-gray-300'
                               }`}
                             />
                           </div>
                           <div className="text-left">
-                            <h3 className={`font-medium ${
-                              payoutMethod === 'mobile'
-                                ? 'text-blue-400'
-                                : 'text-white'
-                            }`}>
+                            <h3 className="font-medium text-white">
                               Mobile Money
                             </h3>
                             <p className="text-sm text-gray-400">
@@ -264,12 +256,12 @@ export default function OffRamp() {
               className="space-y-6"
             >
               {/* Connection Status */}
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+              <div className="bg-black/50 rounded-2xl shadow-lg shadow-black/30 border border-white/10 p-6 backdrop-blur-xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                    <Icon icon="mdi:wallet" className="text-blue-600 dark:text-blue-400" />
+                  <div className="w-8 h-8 bg-black/40 border border-white/10 rounded-lg flex items-center justify-center">
+                    <Icon icon="mdi:wallet" className="text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-white">
                     Wallet Status
                   </h3>
                 </div>
@@ -277,7 +269,7 @@ export default function OffRamp() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600 dark:text-gray-400">Connection:</span>
                     <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${address ? 'bg-blue-500' : 'bg-gray-400'}`} />
+                      <div className={`w-2 h-2 rounded-full ${address ? 'bg-white' : 'bg-gray-500'}`} />
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {address ? 'Connected' : 'Disconnected'}
                       </span>
