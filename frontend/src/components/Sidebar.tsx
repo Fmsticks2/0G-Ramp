@@ -15,7 +15,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`${collapsed ? 'w-20' : 'w-64'} hidden md:flex flex-col backdrop-blur-xl bg-gradient-to-b from-pink-500/20 to-purple-600/20 transition-all duration-300 relative z-10 rounded-2xl m-4 border border-pink-500/30`}
+      className={`${collapsed ? 'w-20' : 'w-64'} flex flex-col backdrop-blur-xl bg-gradient-to-b from-pink-500/20 to-purple-600/20 transition-all duration-300 relative rounded-2xl border border-pink-500/30 h-fit max-h-[60vh]`}
     >
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
@@ -58,21 +58,19 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
         </nav>
       </div>
       
-      <div className="mt-auto p-4">
-        {!collapsed && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-xs text-gray-400 text-center"
-          >
-            <div className="flex items-center justify-center gap-1 mb-1">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span>Live</span>
-            </div>
-            <div>Professional • Secure • 0G</div>
-          </motion.div>
-        )}
-      </div>
+      {!collapsed && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-xs text-gray-400 text-center p-4 mt-4"
+        >
+          <div className="flex items-center justify-center gap-1 mb-1">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <span>Live</span>
+          </div>
+          <div>Professional • Secure • 0G</div>
+        </motion.div>
+      )}
     </motion.aside>
   )
 }

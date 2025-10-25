@@ -30,10 +30,10 @@ export default function Transactions() {
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
-      case 'completed': return 'text-pink-400 bg-pink-400/10'
-      case 'pending': return 'text-pink-300 bg-pink-300/10'
-      case 'failed': return 'text-pink-500 bg-pink-500/10'
-      default: return 'text-pink-400 bg-pink-400/10'
+      case 'completed': return 'text-green-400 bg-green-400/10'
+      case 'pending': return 'text-yellow-300 bg-yellow-300/10'
+      case 'failed': return 'text-red-500 bg-red-500/10'
+      default: return 'text-blue-400 bg-blue-400/10'
     }
   }
 
@@ -47,8 +47,9 @@ export default function Transactions() {
 
   return (
     <Layout>
-      {/* Animated Background */}
-      <div className="fixed inset-0 bg-grid bg-gradient pointer-events-none" />
+      <div className="min-h-screen bg-gray-900">
+        {/* Animated Background */}
+        <div className="fixed inset-0 bg-grid bg-gradient pointer-events-none" />
       
       {/* Hero Section */}
       <motion.div
@@ -58,7 +59,7 @@ export default function Transactions() {
         className="relative mb-8 text-center"
       >
         <motion.h1 
-          className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-pink-400 to-pink-300 bg-clip-text text-transparent"
+          className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-blue-400 to-cyan-300 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -83,18 +84,18 @@ export default function Transactions() {
         className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8"
       >
         {[
-          { icon: "mdi:check-circle", label: "Completed", value: rows.filter(r => r.status === 'completed').length, color: "from-pink-400 to-pink-500" },
-          { icon: "mdi:clock-outline", label: "Pending", value: rows.filter(r => r.status === 'pending').length, color: "from-pink-300 to-pink-400" },
-          { icon: "mdi:close-circle", label: "Failed", value: rows.filter(r => r.status === 'failed').length, color: "from-pink-500 to-pink-600" },
-          { icon: "mdi:chart-line", label: "Total", value: rows.length, color: "from-pink-400 to-pink-500" }
+          { icon: "mdi:check-circle", label: "Completed", value: rows.filter(r => r.status === 'completed').length, color: "from-green-400 to-green-500" },
+          { icon: "mdi:clock-outline", label: "Pending", value: rows.filter(r => r.status === 'pending').length, color: "from-yellow-300 to-yellow-400" },
+          { icon: "mdi:close-circle", label: "Failed", value: rows.filter(r => r.status === 'failed').length, color: "from-red-500 to-red-600" },
+          { icon: "mdi:chart-line", label: "Total", value: rows.length, color: "from-blue-400 to-blue-500" }
         ].map((stat, index) => (
           <motion.div
             key={index}
             whileHover={{ scale: 1.02, y: -2 }}
             className="relative group"
           >
-            <div className="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 rounded-xl blur-sm transition-opacity duration-300" />
-            <div className="relative bg-base-800/30 backdrop-blur-sm border border-base-600 rounded-xl p-4 hover:border-pink-500/30 transition-all duration-300">
+            <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 rounded-xl blur-sm transition-opacity duration-300" />
+            <div className="relative bg-base-800/30 backdrop-blur-sm border border-base-600 rounded-xl p-4 hover:border-blue-500/30 transition-all duration-300">
               <div className={`inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${stat.color} mb-3`}>
                 <Icon icon={stat.icon} className="text-lg text-white" />
               </div>
@@ -112,19 +113,19 @@ export default function Transactions() {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="relative group"
       >
-        <div className="absolute inset-0 bg-pink-500/3 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        <div className="relative rounded-xl border border-base-600 bg-base-800/30 backdrop-blur-md p-6 hover:border-pink-500/30 transition-all duration-300">
+        <div className="absolute inset-0 bg-blue-500/3 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="relative rounded-xl border border-base-600 bg-base-800/30 backdrop-blur-md p-6 hover:border-blue-500/30 transition-all duration-300">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-white flex items-center">
-              <Icon icon="mdi:history" className="mr-2 text-pink-400" />
-              Recent Transactions
-            </h2>
+                <Icon icon="mdi:history" className="mr-2 text-blue-400" />
+                Recent Transactions
+              </h2>
             {address && (
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.reload()}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 border border-pink-500/30 hover:border-pink-500/50 transition-all duration-300"
+                className="inline-flex items-center px-3 py-2 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:border-blue-500/50 transition-all duration-300"
               >
                 <Icon icon="mdi:refresh" className="mr-2" />
                 Refresh
@@ -278,8 +279,9 @@ export default function Transactions() {
           ease: "easeInOut",
           delay: 1
         }}
-        className="fixed top-1/3 right-16 w-10 h-10 bg-gradient-to-br from-pink-400/10 to-pink-300/10 rounded-lg backdrop-blur-sm border border-pink-400/20 pointer-events-none"
+        className="fixed top-1/3 right-16 w-10 h-10 bg-gradient-to-br from-blue-400/10 to-blue-300/10 rounded-lg backdrop-blur-sm border border-blue-400/20 pointer-events-none"
       />
+      </div>
     </Layout>
   )
 }

@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex relative overflow-hidden">
+    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 pointer-events-none">
         <motion.div
@@ -36,11 +36,13 @@ export default function Layout({ children }: { children: ReactNode }) {
         />
       </div>
 
-      {/* Sidebar */}
-      <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
+      {/* Sidebar - Positioned at center-left, aligned with header */}
+      <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-20 hidden md:block">
+        <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
+      </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col relative z-10">
+      <div className="flex flex-col relative z-10 w-full">
         {/* Header */}
         <Header />
 
@@ -49,7 +51,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex-1 p-6 relative bg-gray-900"
+          className="flex-1 p-6 relative bg-gray-900 ml-0 md:ml-72"
         >
           {children}
         </motion.main>
