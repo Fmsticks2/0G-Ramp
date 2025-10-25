@@ -57,7 +57,7 @@ export default function OnRamp() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-900">
+      <div className="min-h-screen bg-black">
         <div className="max-w-4xl mx-auto px-4 py-8">
           {/* Header */}
           <motion.div
@@ -160,7 +160,7 @@ export default function OnRamp() {
                     whileTap={{ scale: 0.98 }}
                     onClick={startOnramp}
                     disabled={loading || !address}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-300 dark:disabled:bg-gray-600 text-white font-semibold py-4 px-6 rounded-xl transition-colors disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>
@@ -264,7 +264,7 @@ export default function OnRamp() {
                       whileTap={{ scale: 0.98 }}
                       onClick={completePayment}
                       disabled={loading}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-300 dark:disabled:bg-gray-600 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {loading ? (
                         <>

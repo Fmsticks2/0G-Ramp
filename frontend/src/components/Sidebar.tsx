@@ -15,7 +15,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`${collapsed ? 'w-20' : 'w-64'} flex flex-col backdrop-blur-xl bg-gradient-to-b from-pink-500/20 to-purple-600/20 transition-all duration-300 relative rounded-2xl border border-pink-500/30 h-fit max-h-[60vh]`}
+      className={`${collapsed ? 'w-20' : 'w-64'} flex flex-col backdrop-blur-xl bg-gradient-to-b from-pink-500/20 to-purple-600/20 transition-all duration-300 relative rounded-none md:rounded-r-2xl border border-pink-500/30 h-screen overflow-y-auto`}
     >
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">

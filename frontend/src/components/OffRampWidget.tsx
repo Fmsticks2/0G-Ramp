@@ -96,7 +96,7 @@ export default function OffRampWidget() {
           <motion.button 
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition-all duration-300 bg-gradient-to-r from-blue-400 to-purple-500 hover:from-blue-500 hover:to-purple-600 text-white shadow-lg hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" 
+            className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed" 
             onClick={request} 
             disabled={loading || !address}
           >

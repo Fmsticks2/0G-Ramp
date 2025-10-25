@@ -47,7 +47,7 @@ export default function Transactions() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-900">
+      <div className="min-h-screen bg-black">
         {/* Animated Background */}
         <div className="fixed inset-0 bg-grid bg-gradient pointer-events-none" />
       

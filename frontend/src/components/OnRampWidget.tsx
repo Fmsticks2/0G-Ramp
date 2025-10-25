@@ -111,7 +111,7 @@ export default function OnRampWidget() {
           <motion.button 
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition-all duration-300 bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white shadow-lg hover:shadow-green-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" 
+            className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed" 
             onClick={startOnramp} 
             disabled={loading || !address}
           >
@@ -176,7 +176,7 @@ export default function OnRampWidget() {
             <motion.button 
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full inline-flex items-center justify-center rounded-xl px-6 py-3 font-medium transition-all duration-300 bg-base-700/50 hover:bg-base-600/50 border border-base-600/50 hover:border-base-500/50 text-white disabled:opacity-50 disabled:cursor-not-allowed" 
+              className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" 
               onClick={completePayment} 
               disabled={loading}
             >

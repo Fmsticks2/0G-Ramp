@@ -34,7 +34,7 @@ export default function Header() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setKycOpen(true)} 
-            className="px-4 py-2 rounded-xl bg-gray-700/50 hover:bg-gray-600/50 border border-gray-600/50 hover:border-gray-500/50 backdrop-blur-sm flex items-center gap-2 transition-all duration-300 group"
+            className="btn-ghost-accent gap-2 group"
           >
             <Icon icon="mdi:account-check" className="group-hover:text-pink-400 transition-colors" />
             <span>KYC</span>

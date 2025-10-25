@@ -92,8 +92,8 @@ export default function KYCModal({ open, onClose }: Props) {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-3">
-              <button onClick={onClose} className="px-4 py-2 rounded-lg bg-base-800 hover:bg-base-700">Cancel</button>
-              <button onClick={onSubmit} disabled={!canSubmit} className="px-4 py-2 rounded-lg bg-accent-500 text-black font-medium hover:bg-accent-400 disabled:opacity-50">
+              <button onClick={onClose} className="btn-ghost">Cancel</button>
+              <button onClick={onSubmit} disabled={!canSubmit} className="btn-ghost-accent">
                 {submitting ? 'Submitting…' : 'Submit'}
               </button>
             </div>
