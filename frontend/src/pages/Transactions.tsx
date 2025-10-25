@@ -33,7 +33,7 @@ export default function Transactions() {
       case 'completed': return 'text-green-400 bg-green-400/10'
       case 'pending': return 'text-yellow-300 bg-yellow-300/10'
       case 'failed': return 'text-red-500 bg-red-500/10'
-      default: return 'text-blue-400 bg-blue-400/10'
+      default: return 'text-white bg-white/10'
     }
   }
 
@@ -49,7 +49,7 @@ export default function Transactions() {
     <Layout>
       <div className="min-h-screen bg-black">
         {/* Animated Background */}
-        <div className="fixed inset-0 bg-grid bg-gradient pointer-events-none" />
+        <div className="fixed inset-0 bg-grid pointer-events-none" />
       
       {/* Hero Section */}
       <motion.div
@@ -59,7 +59,7 @@ export default function Transactions() {
         className="relative mb-8 text-center"
       >
         <motion.h1 
-          className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-blue-400 to-cyan-300 bg-clip-text text-transparent"
+          className="text-3xl lg:text-4xl font-bold mb-3 text-white"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -94,9 +94,9 @@ export default function Transactions() {
             whileHover={{ scale: 1.02, y: -2 }}
             className="relative group"
           >
-            <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 rounded-xl blur-sm transition-opacity duration-300" />
-            <div className="relative bg-base-800/30 backdrop-blur-sm border border-base-600 rounded-xl p-4 hover:border-blue-500/30 transition-all duration-300">
-              <div className={`inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${stat.color} mb-3`}>
+            <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 rounded-xl blur-sm transition-opacity duration-300" />
+            <div className="relative bg-black/20 backdrop-blur-xl border border-white/20 rounded-xl p-4 hover:border-white/30 transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-black/30 backdrop-blur-xl border border-white/20 mb-3">
                 <Icon icon={stat.icon} className="text-lg text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-1">{stat.value}</h3>
@@ -113,11 +113,11 @@ export default function Transactions() {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="relative group"
       >
-        <div className="absolute inset-0 bg-blue-500/3 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        <div className="relative rounded-xl border border-base-600 bg-base-800/30 backdrop-blur-md p-6 hover:border-blue-500/30 transition-all duration-300">
+        <div className="absolute inset-0 bg-black/10 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="relative rounded-xl border border-white/20 bg-black/20 backdrop-blur-xl p-6 hover:border-white/30 transition-all duration-300">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-white flex items-center">
-                <Icon icon="mdi:history" className="mr-2 text-blue-400" />
+                <Icon icon="mdi:history" className="mr-2 text-white" />
                 Recent Transactions
               </h2>
             {address && (
@@ -125,7 +125,7 @@ export default function Transactions() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.reload()}
-                className="inline-flex items-center px-3 py-2 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:border-blue-500/50 transition-all duration-300"
+                className="inline-flex items-center px-3 py-2 rounded-lg bg-black/30 hover:bg-black/40 text-white border border-white/20 hover:border-white/30 transition-all duration-300"
               >
                 <Icon icon="mdi:refresh" className="mr-2" />
                 Refresh
@@ -151,8 +151,8 @@ export default function Transactions() {
               animate={{ opacity: 1 }}
               className="text-center py-10"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-pink-500/10 mb-3">
-                <Icon icon="mdi:loading" className="text-2xl text-pink-400 animate-spin" />
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-black/20 backdrop-blur-xl border border-white/20 mb-3">
+                <Icon icon="mdi:loading" className="text-2xl text-white animate-spin" />
               </div>
               <p className="text-lg text-gray-400">Loading transactions...</p>
             </motion.div>
@@ -164,8 +164,8 @@ export default function Transactions() {
               animate={{ opacity: 1 }}
               className="text-center py-10"
             >
-              <Icon icon="mdi:alert-circle" className="text-5xl text-pink-400 mb-3 mx-auto" />
-              <p className="text-lg text-pink-400 mb-2">Error loading transactions</p>
+              <Icon icon="mdi:alert-circle" className="text-5xl text-white mb-3 mx-auto" />
+              <p className="text-lg text-white mb-2">Error loading transactions</p>
               <p className="text-sm text-gray-500">{error}</p>
             </motion.div>
           )}
@@ -186,7 +186,7 @@ export default function Transactions() {
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead>
-                  <tr className="border-b border-base-600">
+                  <tr className="border-b border-white/10">
                     <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Date</th>
                     <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Type</th>
                     <th className="text-left py-3 px-2 text-gray-400 font-semibold text-sm">Amount</th>
@@ -202,7 +202,7 @@ export default function Transactions() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="border-b border-base-700/50 hover:bg-base-700/20 transition-colors duration-200"
+                      className="border-b border-white/10 hover:bg-black/20 transition-colors duration-200"
                     >
                       <td className="py-3 px-2 text-gray-300">
                         {new Date(r.createdAt).toLocaleDateString()}
@@ -212,7 +212,7 @@ export default function Transactions() {
                       </td>
                       <td className="py-3 px-2">
                         <div className="flex items-center">
-                          <Icon icon={getTypeIcon(r.type)} className="mr-2 text-pink-400" />
+                          <Icon icon={getTypeIcon(r.type)} className="mr-2 text-white" />
                           <span className="capitalize text-white font-medium text-sm">{r.type}</span>
                         </div>
                       </td>
@@ -220,7 +220,7 @@ export default function Transactions() {
                       <td className="py-3 px-2">
                         {r.txHash ? (
                           <a 
-                            className="inline-flex items-center text-pink-400 hover:text-pink-300 transition-colors text-sm" 
+                            className="inline-flex items-center text-white hover:text-gray-300 transition-colors text-sm" 
                             href={`https://blockexplorer/tx/${r.txHash}`} 
                             target="_blank" 
                             rel="noreferrer"
@@ -234,7 +234,7 @@ export default function Transactions() {
                       </td>
                       <td className="py-3 px-2">
                         {r.storageCid ? (
-                          <span className="text-pink-400 font-mono text-xs">
+                          <span className="text-white font-mono text-xs">
                             {r.storageCid.slice(0, 10)}…
                           </span>
                         ) : (
@@ -266,7 +266,7 @@ export default function Transactions() {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="fixed top-1/4 left-10 w-12 h-12 bg-gradient-to-br from-pink-500/10 to-pink-400/10 rounded-xl backdrop-blur-sm border border-pink-500/20 pointer-events-none"
+        className="fixed top-1/4 left-10 w-12 h-12 bg-black/20 backdrop-blur-xl rounded-xl border border-white/20 pointer-events-none"
       />
       <motion.div
         animate={{ 
@@ -279,7 +279,7 @@ export default function Transactions() {
           ease: "easeInOut",
           delay: 1
         }}
-        className="fixed top-1/3 right-16 w-10 h-10 bg-gradient-to-br from-blue-400/10 to-blue-300/10 rounded-lg backdrop-blur-sm border border-blue-400/20 pointer-events-none"
+        className="fixed top-1/3 right-16 w-10 h-10 bg-black/20 backdrop-blur-xl rounded-lg border border-white/20 pointer-events-none"
       />
       </div>
     </Layout>

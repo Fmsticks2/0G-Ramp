@@ -35,19 +35,19 @@ export default function Landing() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-base-900 via-base-800 to-base-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-white/3 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
       {/* Grid Pattern Overlay */}
       <div className="fixed inset-0 bg-grid opacity-30 pointer-events-none"></div>
 
       {/* Header */}
-      <header className="relative z-50 flex items-center justify-between px-6 lg:px-12 py-6 backdrop-blur-sm bg-base-900/50 border-b border-base-600/50">
+      <header className="relative z-50 flex items-center justify-between px-6 lg:px-12 py-6 backdrop-blur-sm bg-black/20 border-b border-white/10">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -84,7 +84,7 @@ export default function Landing() {
             variants={itemVariants}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-xl border border-white/20 text-white text-sm font-medium">
               <Icon icon="mdi:lightning-bolt" className="text-lg" />
               Powered by 0G Network
             </span>
@@ -122,16 +122,16 @@ export default function Landing() {
           >
             <Link 
               to="/dashboard" 
-              className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-gradient-to-r from-accent to-pink-500 hover:from-accent/90 hover:to-pink-500/90 text-white shadow-2xl shadow-accent/25 transition-all duration-300 hover:scale-105 hover:shadow-accent/40"
+              className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-black/30 backdrop-blur-xl hover:bg-black/40 text-white shadow-2xl shadow-black/25 transition-all duration-300 hover:scale-105 border border-white/20"
             >
               <Icon icon="mdi:rocket-launch" className="mr-3 text-xl group-hover:animate-bounce" />
               Start Trading
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent to-pink-500 blur opacity-30 group-hover:opacity-50 transition-opacity -z-10"></div>
+              <div className="absolute inset-0 rounded-2xl bg-black/20 blur opacity-30 group-hover:opacity-50 transition-opacity -z-10"></div>
             </Link>
             
             <Link 
               to="/developers" 
-              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-base-700/50 hover:bg-base-600/50 text-white border border-base-600 hover:border-base-500 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-black/20 backdrop-blur-xl hover:bg-black/30 text-white border border-white/20 hover:border-white/30 transition-all duration-300 hover:scale-105"
             >
               <Icon icon="mdi:code-tags" className="mr-3 text-xl group-hover:rotate-12 transition-transform" />
               View API Docs
@@ -150,7 +150,7 @@ export default function Landing() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-1/4 left-10 w-16 h-16 bg-gradient-to-br from-accent/20 to-purple-500/20 rounded-2xl backdrop-blur-sm border border-accent/30"
+          className="absolute top-1/4 left-10 w-16 h-16 bg-black/20 backdrop-blur-xl rounded-2xl border border-white/20"
         />
         <motion.div
           animate={{ 
@@ -163,7 +163,7 @@ export default function Landing() {
             ease: "easeInOut",
             delay: 1
           }}
-          className="absolute top-1/3 right-16 w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl backdrop-blur-sm border border-blue-500/30"
+          className="absolute top-1/3 right-16 w-12 h-12 bg-black/20 backdrop-blur-xl rounded-xl border border-white/20"
         />
       </section>
 
@@ -231,18 +231,18 @@ export default function Landing() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="group relative p-8 rounded-3xl bg-gradient-to-br from-base-700/50 to-base-800/50 backdrop-blur-sm border border-base-600/50 hover:border-accent/30 transition-all duration-300"
+                className="group relative p-8 rounded-3xl bg-black/20 backdrop-blur-xl border border-white/20 hover:border-white/30 transition-all duration-300"
               >
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-black/50 backdrop-blur-xl mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/20">
                   <Icon icon={feature.icon} className="text-2xl text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-accent transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-white transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-accent/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                <div className="absolute inset-0 rounded-3xl bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
               </motion.div>
             ))}
           </div>
@@ -250,7 +250,7 @@ export default function Landing() {
       </section>
 
       {/* How It Works Section */}
-      <section className="relative py-24 px-6 lg:px-12 bg-gradient-to-r from-base-800/50 to-base-700/50">
+      <section className="relative py-24 px-6 lg:px-12 bg-black/10 backdrop-blur-xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -338,8 +338,8 @@ export default function Landing() {
                 viewport={{ once: true }}
                 className="text-center group"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-accent/20 to-purple-500/20 mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Icon icon={stat.icon} className="text-2xl text-accent" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-black/30 backdrop-blur-xl mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/20">
+                  <Icon icon={stat.icon} className="text-2xl text-white" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                   {stat.value}
@@ -354,7 +354,7 @@ export default function Landing() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 px-6 lg:px-12 bg-gradient-to-r from-accent/10 via-purple-500/10 to-blue-500/10">
+      <section className="relative py-24 px-6 lg:px-12 bg-black/10 backdrop-blur-xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -372,14 +372,14 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
               to="/dashboard" 
-              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-gradient-to-r from-accent to-pink-500 hover:from-accent/90 hover:to-pink-500/90 text-white shadow-2xl shadow-accent/25 transition-all duration-300 hover:scale-105"
+              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-black/30 backdrop-blur-xl hover:bg-black/40 text-white shadow-2xl shadow-black/25 transition-all duration-300 hover:scale-105 border border-white/20"
             >
               <Icon icon="mdi:rocket-launch" className="mr-3 text-xl group-hover:animate-bounce" />
               Launch App
             </Link>
             <Link 
               to="/transactions" 
-              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-base-700/50 hover:bg-base-600/50 text-white border border-base-600 hover:border-accent/50 backdrop-blur-sm transition-all duration-300"
+              className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-2xl bg-black/20 backdrop-blur-xl hover:bg-black/30 text-white border border-white/20 hover:border-white/30 transition-all duration-300"
             >
               <Icon icon="mdi:clipboard-text" className="mr-3 text-xl" />
               View Transactions
@@ -389,7 +389,7 @@ export default function Landing() {
       </section>
 
       {/* Footer */}
-      <footer className="relative py-16 px-6 lg:px-12 border-t border-base-600/50">
+      <footer className="relative py-16 px-6 lg:px-12 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-1 md:col-span-2">
@@ -413,7 +413,7 @@ export default function Landing() {
                   <a
                     key={index}
                     href={social.href}
-                    className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-base-700/50 hover:bg-accent/20 text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110"
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black/20 backdrop-blur-xl hover:bg-black/30 text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 border border-white/20"
                   >
                     <Icon icon={social.icon} className="text-xl" />
                   </a>
@@ -426,7 +426,7 @@ export default function Landing() {
               <ul className="space-y-3">
                 {["Dashboard", "Transactions", "API Docs", "Support"].map((item, index) => (
                   <li key={index}>
-                    <a href="#" className="text-gray-400 hover:text-accent transition-colors">
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors">
                       {item}
                     </a>
                   </li>
@@ -439,7 +439,7 @@ export default function Landing() {
               <ul className="space-y-3">
                 {["About", "Blog", "Careers", "Contact"].map((item, index) => (
                   <li key={index}>
-                    <a href="#" className="text-gray-400 hover:text-accent transition-colors">
+                    <a href="#" className="text-gray-400 hover:text-white transition-colors">
                       {item}
                     </a>
                   </li>
@@ -448,15 +448,15 @@ export default function Landing() {
             </div>
           </div>
           
-          <div className="pt-8 border-t border-base-600/50 flex flex-col md:flex-row justify-between items-center">
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2024 0G Ramp. All rights reserved.
             </p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-accent text-sm transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-400 hover:text-accent text-sm transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms of Service
               </a>
             </div>

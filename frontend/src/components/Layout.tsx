@@ -36,8 +36,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         />
       </div>
 
-      {/* Sidebar - Positioned at center-left, aligned with header */}
-      <div className="fixed left-0 top-0 h-screen z-20 hidden md:block">
+      {/* Sidebar - Positioned under header and aligned with header margin */}
+      <div className="fixed left-5 md:left-7 top-24 h-[calc(100vh-6rem)] z-20 hidden md:block">
         <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
       </div>
 
@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className={`flex-1 p-6 relative bg-black ml-0 ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'}`}
+          className={`flex-1 p-6 relative bg-black ml-0 ${sidebarCollapsed ? 'md:ml-[6rem]' : 'md:ml-[17rem]'}`}
         >
           {children}
         </motion.main>

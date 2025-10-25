@@ -204,27 +204,27 @@ export default function OnRamp() {
               className="space-y-6"
             >
               {/* Connection Status */}
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                    <Icon icon="mdi:wallet" className="text-blue-600 dark:text-blue-400" />
+                  <div className="w-8 h-8 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-lg flex items-center justify-center">
+                    <Icon icon="mdi:wallet" className="text-blue-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-white">
                     Wallet Status
                   </h3>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Connection:</span>
+                    <span className="text-sm text-gray-400">Connection:</span>
                     <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${address ? 'bg-emerald-500' : 'bg-gray-400'}`} />
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">
+                      <div className={`w-2 h-2 rounded-full ${address ? 'bg-emerald-400' : 'bg-gray-500'}`} />
+                      <span className="text-sm font-medium text-white">
                         {address ? 'Connected' : 'Disconnected'}
                       </span>
                     </div>
                   </div>
                   {address && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono break-all">
+                    <div className="text-xs text-gray-400 font-mono break-all">
                       {address}
                     </div>
                   )}
@@ -236,17 +236,17 @@ export default function OnRamp() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6"
+                  className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                      <Icon icon="mdi:link" className="text-emerald-600 dark:text-emerald-400" />
+                    <div className="w-8 h-8 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-lg flex items-center justify-center">
+                      <Icon icon="mdi:link" className="text-emerald-400" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <h3 className="text-lg font-semibold text-white">
                       Payment Ready
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-sm text-gray-400 mb-4">
                     Complete your payment using the secure payment link below:
                   </p>
                   <div className="space-y-3">
@@ -254,7 +254,7 @@ export default function OnRamp() {
                       href={paymentUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-sm font-medium"
+                      className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
                     >
                       <Icon icon="mdi:open-in-new" />
                       Open Payment Page

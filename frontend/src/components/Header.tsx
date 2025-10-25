@@ -13,7 +13,7 @@ export default function Header() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="flex items-center justify-between px-6 py-4 bg-gray-800 rounded-2xl m-4 border border-gray-600"
+        className="flex items-center justify-between px-6 py-4 bg-black/20 backdrop-blur-xl rounded-2xl m-4 border border-white/10"
       >
         <div className="flex items-center gap-4">
           <motion.div
@@ -44,7 +44,7 @@ export default function Header() {
             whileHover={{ scale: 1.02 }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-400/20 to-purple-500/20 rounded-xl blur opacity-0 hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-black/20 rounded-xl blur opacity-0 hover:opacity-100 transition-opacity duration-300" />
             <div className="relative">
               <ConnectButton />
             </div>

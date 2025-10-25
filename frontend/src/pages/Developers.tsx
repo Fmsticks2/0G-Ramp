@@ -113,13 +113,13 @@ print(response.json())`,
         {/* Animated Background */}
         <div className="absolute inset-0 bg-black">
           <div className="absolute inset-0 bg-grid opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/3 via-transparent to-pink-600/3" />
+          <div className="absolute inset-0 bg-black/5" />
         </div>
 
         {/* Floating Elements - Reduced */}
-        <div className="absolute top-20 left-10 w-16 h-16 bg-pink-500/5 rounded-full blur-2xl animate-float" />
-        <div className="absolute top-40 right-20 w-12 h-12 bg-pink-400/5 rounded-full blur-xl animate-float-delayed" />
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-pink-600/5 rounded-full blur-2xl animate-float" />
+        <div className="absolute top-20 left-10 w-16 h-16 bg-black/20 backdrop-blur-xl rounded-full blur-2xl border border-white/20 animate-float" />
+        <div className="absolute top-40 right-20 w-12 h-12 bg-black/20 backdrop-blur-xl rounded-lg blur-xl border border-white/20 animate-float-delayed" />
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-black/20 backdrop-blur-xl rounded-full blur-2xl border border-white/20 animate-float" />
 
         <div className="relative z-10 p-4 space-y-6">
           {/* Hero Section - Compact */}
@@ -130,7 +130,7 @@ print(response.json())`,
           >
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
               Developer{' '}
-              <span className="bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent">
+              <span className="text-white">
                 API
               </span>
             </h1>
@@ -155,9 +155,9 @@ print(response.json())`,
                 whileHover={{ scale: 1.02, y: -2 }}
                 className="relative group"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-pink-600/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative rounded-lg border border-pink-500/20 bg-black/60 backdrop-blur-sm p-4 hover:border-pink-400/30 transition-all duration-300">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-pink-500 to-pink-600 flex items-center justify-center mb-3">
+                <div className="absolute inset-0 bg-black/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative rounded-lg border border-white/20 bg-black/60 backdrop-blur-sm p-4 hover:border-white/30 transition-all duration-300">
+                  <div className="w-8 h-8 rounded-lg bg-black/50 backdrop-blur-xl flex items-center justify-center mb-3 border border-white/20">
                     <Icon icon={feature.icon} className="text-lg text-white" />
                   </div>
                   <h3 className="text-sm font-bold text-white mb-2">{feature.title}</h3>
@@ -175,16 +175,16 @@ print(response.json())`,
             className="max-w-3xl mx-auto"
           >
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-pink-600/10 rounded-xl blur-sm opacity-50" />
-              <div className="relative rounded-xl border border-pink-500/20 bg-black/60 backdrop-blur-sm p-6">
+              <div className="absolute inset-0 bg-black/10 rounded-xl blur-sm opacity-50" />
+              <div className="relative rounded-xl border border-white/20 bg-black/60 backdrop-blur-sm p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-pink-500 to-pink-600 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-lg bg-black/50 backdrop-blur-xl flex items-center justify-center border border-white/20">
                     <Icon icon="mdi:key" className="text-sm text-white" />
                   </div>
                   <h2 className="text-lg font-bold text-white">API Key Management</h2>
                   <div className="flex items-center gap-2 ml-auto">
-                    <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse" />
-                    <span className="text-pink-400 text-xs font-medium">Live</span>
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                    <span className="text-white text-xs font-medium">Live</span>
                   </div>
                 </div>
 
@@ -199,14 +199,14 @@ print(response.json())`,
                           type="text"
                           value={apiKey || 'No API key generated'}
                           readOnly
-                          className="w-full px-3 py-2 bg-black/50 border border-pink-500/20 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-pink-400/30 transition-colors"
+                          className="w-full px-3 py-2 bg-black/50 border border-white/20 rounded-lg text-white text-sm placeholder-gray-500 focus:outline-none focus:border-white/30 transition-colors"
                         />
                       </div>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => copyToClipboard(apiKey, 'apikey')}
-                        className="px-3 py-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-200 flex items-center gap-1"
+                        className="px-3 py-2 bg-black/30 backdrop-blur-xl text-white rounded-lg hover:bg-black/40 transition-all duration-200 flex items-center gap-1 border border-white/20"
                       >
                         <Icon icon={copied === 'apikey' ? 'mdi:check' : 'mdi:content-copy'} className="text-sm" />
                       </motion.button>
@@ -218,7 +218,7 @@ print(response.json())`,
                     whileTap={{ scale: 0.98 }}
                     onClick={handleGenerateKey}
                     disabled={loading || !address}
-                    className="w-full py-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+                    className="w-full py-2 bg-black/30 backdrop-blur-xl text-white rounded-lg hover:bg-black/40 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm border border-white/20"
                   >
                     {loading ? (
                       <>
@@ -254,13 +254,13 @@ print(response.json())`,
                   transition={{ delay: 0.1 * Object.keys(codeExamples).indexOf(lang) }}
                   className="relative group"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-pink-600/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative rounded-lg border border-pink-500/20 bg-black/60 backdrop-blur-sm overflow-hidden">
-                    <div className="flex items-center justify-between p-3 border-b border-pink-500/20">
+                  <div className="absolute inset-0 bg-black/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative rounded-lg border border-white/20 bg-black/60 backdrop-blur-sm overflow-hidden">
+                    <div className="flex items-center justify-between p-3 border-b border-white/20">
                       <div className="flex items-center gap-2">
                         <Icon 
                           icon={lang === 'node' ? 'mdi:nodejs' : lang === 'python' ? 'mdi:language-python' : 'mdi:console'} 
-                          className="text-sm text-pink-400" 
+                          className="text-sm text-white" 
                         />
                         <span className="text-white font-medium text-sm capitalize">{lang === 'node' ? 'Node.js' : lang}</span>
                       </div>
@@ -268,7 +268,7 @@ print(response.json())`,
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => copyToClipboard(code, lang)}
-                        className="p-1 text-pink-400 hover:text-pink-300 transition-colors"
+                        className="p-1 text-white hover:text-gray-300 transition-colors bg-black/30 backdrop-blur-xl rounded border border-white/20 hover:bg-black/40"
                       >
                         <Icon icon={copied === lang ? 'mdi:check' : 'mdi:content-copy'} className="text-sm" />
                       </motion.button>

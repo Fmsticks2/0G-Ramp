@@ -15,7 +15,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`${collapsed ? 'w-20' : 'w-64'} flex flex-col backdrop-blur-xl bg-gradient-to-b from-pink-500/20 to-purple-600/20 transition-all duration-300 relative rounded-none md:rounded-r-2xl border border-pink-500/30 h-screen overflow-y-auto`}
+      className={`${collapsed ? 'w-20' : 'w-64'} flex flex-col backdrop-blur-xl bg-black/20 transition-all duration-300 relative rounded-none md:rounded-r-2xl border border-white/10 h-full overflow-y-auto`}
     >
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
@@ -24,14 +24,14 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
             whileHover={{ scale: 1.05 }}
           >
             <div className="relative">
-              <Icon icon="mdi:bridge" className="text-pink-400 text-2xl" />
-              <div className="absolute inset-0 bg-pink-400/20 rounded-full blur-md" />
+              <Icon icon="mdi:bridge" className="text-white text-2xl" />
+              <div className="absolute inset-0 bg-white/10 rounded-full blur-md" />
             </div>
             {!collapsed && (
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="font-semibold bg-gradient-to-r from-white to-pink-400 bg-clip-text text-transparent"
+                className="font-semibold text-white"
               >
                 0G-Ramp
               </motion.span>
@@ -42,9 +42,9 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onToggle}
-            className="flex items-center justify-center p-2 rounded-xl bg-pink-800/50 hover:bg-pink-700/50 border border-pink-600/50 hover:border-pink-500/50 transition-all duration-300"
+            className="flex items-center justify-center p-2 rounded-xl bg-black/50 hover:bg-black/70 border border-white/20 hover:border-white/30 transition-all duration-300"
           >
-            <Icon icon={collapsed ? "mdi:chevron-right" : "mdi:chevron-left"} className="text-xl text-pink-400" />
+            <Icon icon={collapsed ? "mdi:chevron-right" : "mdi:chevron-left"} className="text-xl text-white" />
           </motion.button>
         </div>
         
@@ -90,13 +90,13 @@ function NavItem({ to, icon, label, active, collapsed }: {
         className={`
           flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 group relative overflow-hidden
           ${active 
-            ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 border border-pink-500/30 text-pink-400' 
-            : 'hover:bg-pink-500/10 hover:border-pink-500/20 border border-transparent text-gray-300 hover:text-pink-400'
+            ? 'bg-black/30 backdrop-blur-sm border border-white/20 text-white' 
+            : 'hover:bg-black/20 hover:border-white/10 border border-transparent text-gray-300 hover:text-white'
           }
         `}
       >
         <div className="relative z-10 flex items-center gap-3">
-          <Icon icon={icon} className={`text-lg ${active ? 'text-pink-400' : 'group-hover:text-pink-400'}`} />
+          <Icon icon={icon} className={`text-lg ${active ? 'text-white' : 'group-hover:text-white'}`} />
           {!collapsed && (
             <motion.span 
               initial={{ opacity: 0 }}
@@ -111,7 +111,7 @@ function NavItem({ to, icon, label, active, collapsed }: {
         {active && (
           <motion.div
             layoutId="activeTab"
-            className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-600/10 rounded-xl"
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm rounded-xl"
             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
           />
         )}
