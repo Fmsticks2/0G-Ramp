@@ -1,0 +1,123 @@
+import { Link, useLocation } from 'react-router-dom'
+import { Icon } from '@iconify/react'
+import { motion } from 'framer-motion'
+
+interface SidebarProps {
+  collapsed: boolean
+  onToggle: () => void
+}
+
+export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
+  const { pathname } = useLocation()
+
+  return (
+    <motion.aside 
+      initial={{ x: -100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`${collapsed ? 'w-20' : 'w-64'} hidden md:flex flex-col backdrop-blur-xl bg-gradient-to-b from-pink-500/20 to-purple-600/20 transition-all duration-300 relative z-10 rounded-2xl m-4 border border-pink-500/30`}
+    >
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-8">
+          <motion.div 
+            className="flex items-center gap-2"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="relative">
+              <Icon icon="mdi:bridge" className="text-pink-400 text-2xl" />
+              <div className="absolute inset-0 bg-pink-400/20 rounded-full blur-md" />
+            </div>
+            {!collapsed && (
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="font-semibold bg-gradient-to-r from-white to-pink-400 bg-clip-text text-transparent"
+              >
+                0G-Ramp
+              </motion.span>
+            )}
+          </motion.div>
+          
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onToggle}
+            className="flex items-center justify-center p-2 rounded-xl bg-pink-800/50 hover:bg-pink-700/50 border border-pink-600/50 hover:border-pink-500/50 transition-all duration-300"
+          >
+            <Icon icon={collapsed ? "mdi:chevron-right" : "mdi:chevron-left"} className="text-xl text-pink-400" />
+          </motion.button>
+        </div>
+        
+        <nav className="flex flex-col gap-2">
+          <NavItem to="/" icon="mdi:home" label="Home" active={pathname === '/'} collapsed={collapsed} />
+          <NavItem to="/dashboard" icon="mdi:view-dashboard" label="Dashboard" active={pathname === '/dashboard'} collapsed={collapsed} />
+          <NavItem to="/onramp" icon="mdi:bank-transfer-in" label="On-Ramp" active={pathname === '/onramp'} collapsed={collapsed} />
+          <NavItem to="/offramp" icon="mdi:bank-transfer-out" label="Off-Ramp" active={pathname === '/offramp'} collapsed={collapsed} />
+          <NavItem to="/transactions" icon="mdi:clipboard-text" label="Transactions" active={pathname === '/transactions'} collapsed={collapsed} />
+          <NavItem to="/developers" icon="mdi:code-braces" label="Developers" active={pathname === '/developers'} collapsed={collapsed} />
+        </nav>
+      </div>
+      
+      <div className="mt-auto p-4">
+        {!collapsed && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xs text-gray-400 text-center"
+          >
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span>Live</span>
+            </div>
+            <div>Professional • Secure • 0G</div>
+          </motion.div>
+        )}
+      </div>
+    </motion.aside>
+  )
+}
+
+function NavItem({ to, icon, label, active, collapsed }: { 
+  to: string; 
+  icon: string; 
+  label: string; 
+  active: boolean;
+  collapsed: boolean;
+}) {
+  return (
+    <Link to={to}>
+      <motion.div
+        whileHover={{ scale: 1.02, x: 4 }}
+        whileTap={{ scale: 0.98 }}
+        className={`
+          flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 group relative overflow-hidden
+          ${active 
+            ? 'bg-gradient-to-r from-pink-500/20 to-purple-600/20 border border-pink-500/30 text-pink-400' 
+            : 'hover:bg-pink-500/10 hover:border-pink-500/20 border border-transparent text-gray-300 hover:text-pink-400'
+          }
+        `}
+      >
+        <div className="relative z-10 flex items-center gap-3">
+          <Icon icon={icon} className={`text-lg ${active ? 'text-pink-400' : 'group-hover:text-pink-400'}`} />
+          {!collapsed && (
+            <motion.span 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="font-medium"
+            >
+              {label}
+            </motion.span>
+          )}
+        </div>
+        
+        {active && (
+          <motion.div
+            layoutId="activeTab"
+            className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-600/10 rounded-xl"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </motion.div>
+    </Link>
+  )
+}

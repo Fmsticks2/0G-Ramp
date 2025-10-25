@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { Link } from 'react-router-dom'
 import Layout from '../components/Layout'
-import ContractInfo from '../components/ContractInfo'
 
 export default function Dashboard() {
   return (
@@ -250,15 +249,6 @@ export default function Dashboard() {
                 </div>
               </motion.div>
             </div>
-          </motion.div>
-
-          {/* Contract Information */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <ContractInfo />
           </motion.div>
         </div>
       </div>
