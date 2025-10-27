@@ -57,27 +57,38 @@ export default function OnRamp() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-black">
-        <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="min-h-screen bg-transparent">
+        <div className="max-w-7xl mx-auto px-2 md:px-4 py-4 md:py-8">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl mb-6">
-              <Icon icon="mdi:bank-transfer-in" className="text-3xl text-emerald-600 dark:text-emerald-400" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <motion.div 
+              className="inline-flex items-center justify-center w-20 md:w-24 h-20 md:h-24 bg-linear-to-br from-green-400/20 to-emerald-600/20 backdrop-blur-xl rounded-3xl mb-4 md:mb-6 relative overflow-hidden border border-green-400/30"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              style={{
+                boxShadow: '0 0 40px rgba(52, 211, 153, 0.3)'
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-linear-to-r from-green-400/20 to-transparent"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              <Icon icon="mdi:bank-transfer-in" className="text-4xl md:text-5xl text-green-400 relative z-10" />
+            </motion.div>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4">
               On-Ramp Service
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Convert your fiat currency to USDC seamlessly. Fast, secure, and transparent transactions on the 0G Network.
+            <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto px-4">
+              Convert your fiat currency to USDC seamlessly. Fast, secure, and transparent transactions.
             </p>
           </motion.div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Transaction Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -85,12 +96,20 @@ export default function OnRamp() {
               transition={{ delay: 0.1 }}
               className="lg:col-span-2"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-8">
+              <div className="bg-black/40 backdrop-blur-xl rounded-3xl border border-accent/20 p-6 md:p-8 hover:border-accent/30 transition-all duration-300"
+                style={{
+                  boxShadow: '0 0 30px rgba(255, 79, 216, 0.1)'
+                }}
+              >
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                    <Icon icon="mdi:currency-usd" className="text-emerald-600 dark:text-emerald-400" />
-                  </div>
-                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                  <motion.div 
+                    className="w-12 h-12 bg-linear-to-br from-green-400/20 to-emerald-600/20 backdrop-blur-xl rounded-xl flex items-center justify-center border border-green-400/30"
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Icon icon="mdi:currency-usd" className="text-2xl text-green-400" />
+                  </motion.div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
                     Purchase USDC
                   </h2>
                 </div>
@@ -98,7 +117,7 @@ export default function OnRamp() {
                 <div className="space-y-6">
                   {/* Amount Input */}
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <label className="block text-sm font-medium text-gray-300">
                       Amount to Purchase
                     </label>
                     <div className="relative">
@@ -107,11 +126,11 @@ export default function OnRamp() {
                         min="1"
                         value={fiatAmount}
                         onChange={(e) => setFiatAmount(e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                        className="w-full px-4 py-3 bg-black/50 border border-accent/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent/40 transition-colors"
                         placeholder="Enter amount"
                       />
                       <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-                        <span className="text-gray-500 dark:text-gray-400 text-sm font-medium">
+                        <span className="text-gray-400 text-sm font-medium">
                           {currency}
                         </span>
                       </div>
@@ -120,13 +139,14 @@ export default function OnRamp() {
 
                   {/* Currency Selection */}
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <label className="block text-sm font-medium text-gray-300">
                       Currency
                     </label>
                     <select
+                      title='currency'
                       value={currency}
                       onChange={(e) => setCurrency(e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                      className="w-full px-4 py-3 bg-black/50 border border-accent/20 rounded-xl text-white focus:outline-none focus:border-accent/40 transition-colors"
                     >
                       <option value="USD">🇺🇸 US Dollar (USD)</option>
                       <option value="EUR">🇪🇺 Euro (EUR)</option>
@@ -135,22 +155,22 @@ export default function OnRamp() {
                   </div>
 
                   {/* Conversion Preview */}
-                  <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600 dark:text-gray-400">You pay:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                  <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-accent/10">
+                    <div className="flex items-center justify-between text-sm mb-2">
+                      <span className="text-gray-400">You pay:</span>
+                      <span className="font-medium text-white">
                         {fiatAmount} {currency}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between text-sm mt-2">
-                      <span className="text-gray-600 dark:text-gray-400">You receive:</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                    <div className="flex items-center justify-between text-sm mb-2">
+                      <span className="text-gray-400">You receive:</span>
+                      <span className="font-medium text-white">
                         ≈ {fiatAmount} USDC
                       </span>
                     </div>
-                    <div className="flex items-center justify-between text-xs mt-2 pt-2 border-t border-gray-200 dark:border-gray-600">
-                      <span className="text-gray-500 dark:text-gray-400">Exchange rate:</span>
-                      <span className="text-gray-500 dark:text-gray-400">1 {currency} = 1 USDC</span>
+                    <div className="flex items-center justify-between text-xs pt-2 border-t border-accent/10">
+                      <span className="text-gray-500">Exchange rate:</span>
+                      <span className="text-gray-500">1 {currency} = 1 USDC</span>
                     </div>
                   </div>
 
@@ -160,7 +180,10 @@ export default function OnRamp() {
                     whileTap={{ scale: 0.98 }}
                     onClick={startOnramp}
                     disabled={loading || !address}
-                    className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-4 bg-linear-to-r from-accent to-purple-600 text-white font-semibold rounded-xl hover:from-accent/90 hover:to-purple-600/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-accent/30"
+                    style={{
+                      boxShadow: '0 0 20px rgba(255, 79, 216, 0.3)'
+                    }}
                   >
                     {loading ? (
                       <>
@@ -186,7 +209,7 @@ export default function OnRamp() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       onClick={resetForm}
-                      className="w-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+                      className="w-full bg-black/30 backdrop-blur-sm hover:bg-black/40 border border-accent/20 text-gray-300 hover:text-white font-medium py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2"
                     >
                       <Icon icon="mdi:refresh" />
                       Start New Transaction
@@ -204,11 +227,19 @@ export default function OnRamp() {
               className="space-y-6"
             >
               {/* Connection Status */}
-              <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6">
+              <div className="bg-black/40 backdrop-blur-xl rounded-2xl border border-accent/20 p-6"
+                style={{
+                  boxShadow: '0 0 20px rgba(255, 79, 216, 0.1)'
+                }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-lg flex items-center justify-center">
-                    <Icon icon="mdi:wallet" className="text-blue-400" />
-                  </div>
+                  <motion.div 
+                    className="w-10 h-10 bg-linear-to-br from-blue-400/20 to-cyan-600/20 backdrop-blur-xl rounded-lg flex items-center justify-center border border-blue-400/30"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Icon icon="mdi:wallet" className="text-lg text-blue-400" />
+                  </motion.div>
                   <h3 className="text-lg font-semibold text-white">
                     Wallet Status
                   </h3>
@@ -217,14 +248,14 @@ export default function OnRamp() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-400">Connection:</span>
                     <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${address ? 'bg-emerald-400' : 'bg-gray-500'}`} />
+                      <div className={`w-2 h-2 rounded-full ${address ? 'bg-green-400' : 'bg-gray-500'}`} />
                       <span className="text-sm font-medium text-white">
                         {address ? 'Connected' : 'Disconnected'}
                       </span>
                     </div>
                   </div>
                   {address && (
-                    <div className="text-xs text-gray-400 font-mono break-all">
+                    <div className="text-xs text-gray-400 font-mono break-all bg-black/30 p-2 rounded-lg">
                       {address}
                     </div>
                   )}
@@ -236,25 +267,32 @@ export default function OnRamp() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6"
+                  className="bg-black/40 backdrop-blur-xl rounded-2xl border border-green-400/30 p-6"
+                  style={{
+                    boxShadow: '0 0 20px rgba(52, 211, 153, 0.2)'
+                  }}
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-lg flex items-center justify-center">
-                      <Icon icon="mdi:link" className="text-emerald-400" />
-                    </div>
+                    <motion.div 
+                      className="w-10 h-10 bg-linear-to-br from-green-400/20 to-emerald-600/20 backdrop-blur-xl rounded-lg flex items-center justify-center border border-green-400/30"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Icon icon="mdi:link" className="text-lg text-green-400" />
+                    </motion.div>
                     <h3 className="text-lg font-semibold text-white">
                       Payment Ready
                     </h3>
                   </div>
                   <p className="text-sm text-gray-400 mb-4">
-                    Complete your payment using the secure payment link below:
+                    Complete your payment using the secure payment link:
                   </p>
                   <div className="space-y-3">
                     <a
                       href={paymentUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
+                      className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 text-sm font-medium transition-colors"
                     >
                       <Icon icon="mdi:open-in-new" />
                       Open Payment Page
@@ -264,7 +302,10 @@ export default function OnRamp() {
                       whileTap={{ scale: 0.98 }}
                       onClick={completePayment}
                       disabled={loading}
-                      className="w-full inline-flex items-center justify-center gap-2 btn-ghost-accent btn-ghost-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-3 bg-linear-to-r from-green-400 to-emerald-600 text-white font-medium rounded-xl hover:from-green-400/90 hover:to-emerald-600/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-green-400/30"
+                      style={{
+                        boxShadow: '0 0 15px rgba(52, 211, 153, 0.3)'
+                      }}
                     >
                       {loading ? (
                         <>
@@ -287,13 +328,20 @@ export default function OnRamp() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`rounded-2xl shadow-sm border p-6 ${
+                  className={`rounded-2xl border p-6 ${
                     message.includes('confirmed') || message.includes('created')
-                      ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
+                      ? 'bg-green-400/10 border-green-400/30'
                       : message.includes('Error') || message.includes('Connect')
-                      ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
-                      : 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
+                      ? 'bg-red-500/10 border-red-500/30'
+                      : 'bg-blue-400/10 border-blue-400/30'
                   }`}
+                  style={{
+                    boxShadow: message.includes('confirmed') || message.includes('created')
+                      ? '0 0 20px rgba(52, 211, 153, 0.2)'
+                      : message.includes('Error') || message.includes('Connect')
+                      ? '0 0 20px rgba(239, 68, 68, 0.2)'
+                      : '0 0 20px rgba(96, 165, 250, 0.2)'
+                  }}
                 >
                   <div className="flex items-start gap-3">
                     <Icon
@@ -306,30 +354,30 @@ export default function OnRamp() {
                       }
                       className={`text-xl mt-0.5 ${
                         message.includes('confirmed') || message.includes('created')
-                          ? 'text-emerald-600 dark:text-emerald-400'
+                          ? 'text-green-400'
                           : message.includes('Error') || message.includes('Connect')
-                          ? 'text-red-600 dark:text-red-400'
-                          : 'text-blue-600 dark:text-blue-400'
+                          ? 'text-red-500'
+                          : 'text-blue-400'
                       }`}
                     />
                     <div>
                       <h4 className={`font-medium mb-1 ${
                         message.includes('confirmed') || message.includes('created')
-                          ? 'text-emerald-900 dark:text-emerald-100'
+                          ? 'text-green-300'
                           : message.includes('Error') || message.includes('Connect')
-                          ? 'text-red-900 dark:text-red-100'
-                          : 'text-blue-900 dark:text-blue-100'
+                          ? 'text-red-400'
+                          : 'text-blue-300'
                       }`}>
                         {message.includes('confirmed') ? 'Success' : 
-                         message.includes('created') ? 'Session Created' :
-                         message.includes('Error') || message.includes('Connect') ? 'Action Required' : 'Information'}
+                        message.includes('created') ? 'Session Created' :
+                        message.includes('Error') || message.includes('Connect') ? 'Action Required' : 'Information'}
                       </h4>
                       <p className={`text-sm ${
                         message.includes('confirmed') || message.includes('created')
-                          ? 'text-emerald-700 dark:text-emerald-300'
+                          ? 'text-green-400/80'
                           : message.includes('Error') || message.includes('Connect')
-                          ? 'text-red-700 dark:text-red-300'
-                          : 'text-blue-700 dark:text-blue-300'
+                          ? 'text-red-400/80'
+                          : 'text-blue-400/80'
                       }`}>
                         {message}
                       </p>
@@ -339,40 +387,43 @@ export default function OnRamp() {
               )}
 
               {/* Information Panel */}
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+              <div className="bg-black/40 backdrop-blur-xl rounded-2xl border border-accent/20 p-6"
+                style={{
+                  boxShadow: '0 0 20px rgba(255, 79, 216, 0.1)'
+                }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                    <Icon icon="mdi:information" className="text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <motion.div 
+                    className="w-10 h-10 bg-linear-to-br from-accent/20 to-purple-600/20 backdrop-blur-xl rounded-lg flex items-center justify-center border border-accent/30"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Icon icon="mdi:information" className="text-lg text-accent" />
+                  </motion.div>
+                  <h3 className="text-lg font-semibold text-white">
                     How it Works
                   </h3>
                 </div>
-                <div className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">1</span>
-                    </div>
-                    <p>Enter the amount you want to convert to USDC</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">2</span>
-                    </div>
-                    <p>Create a secure payment session</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">3</span>
-                    </div>
-                    <p>Complete payment through our secure provider</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">4</span>
-                    </div>
-                    <p>Receive USDC directly in your connected wallet</p>
-                  </div>
+                <div className="space-y-3 text-sm text-gray-400">
+                  {[
+                    'Enter the amount you want to convert to USDC',
+                    'Create a secure payment session',
+                    'Complete payment through our secure provider',
+                    'Receive USDC directly in your connected wallet'
+                  ].map((step, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + i * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className="w-6 h-6 bg-green-400/20 backdrop-blur-sm rounded-full flex items-center justify-center shrink-0 mt-0.5 border border-green-400/30">
+                        <span className="text-xs font-bold text-green-400">{i + 1}</span>
+                      </div>
+                      <p>{step}</p>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </motion.div>
