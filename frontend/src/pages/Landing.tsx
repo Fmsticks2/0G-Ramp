@@ -53,7 +53,6 @@ export default function Landing() {
     },
   };
 
-
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
       {/* Cursor Follow Effect */}
@@ -64,10 +63,16 @@ export default function Landing() {
         <AnimatedBackgroundGrid scrollYProgress={scrollYProgress} />
 
         {/* Glowing Orbs */}
-        <GlowOrb className="w-[500px] h-[500px] -top-40 -right-40" delay={0} />
-        <GlowOrb className="w-[600px] h-[600px] top-1/2 -left-60" delay={1.5} />
         <GlowOrb
-          className="w-[400px] h-[400px] bottom-20 right-1/4"
+          className="w-[400px] h-[400px] -top-40 -right-40 opacity-40"
+          delay={0}
+        />
+        <GlowOrb
+          className="w-[450px] h-[450px] top-1/2 -left-60 opacity-30"
+          delay={1.5}
+        />
+        <GlowOrb
+          className="w-[300px] h-[300px] bottom-20 right-1/4 opacity-30"
           delay={3}
         />
       </div>
@@ -258,7 +263,7 @@ export default function Landing() {
         </motion.div>
 
         {/* Animated Particles */}
-          <AnimatedParticles />
+        <AnimatedParticles />
       </section>
 
       {/* Features Section */}

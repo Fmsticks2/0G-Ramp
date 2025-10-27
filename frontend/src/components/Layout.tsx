@@ -1,14 +1,20 @@
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MobileSidebar from "./MobileSidebar";
 import { cn } from "../lib/utils";
 import { Icon } from "@iconify/react";
+import { useLocation } from "react-router-dom";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -17,26 +23,26 @@ export default function Layout({ children }: { children: ReactNode }) {
         <motion.div
           animate={{
             rotate: [0, 360],
-            scale: [1, 1.1, 1],
+            scale: [1, 1.05, 1],
           }}
           transition={{
             duration: 30,
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -top-32 -left-32 w-64 h-64 bg-linear-to-br from-[#FF4FD8]/5 to-purple-600/5 rounded-full blur-3xl"
+          className="absolute -top-32 -left-32 w-48 h-48 bg-linear-to-br from-[#FF4FD8]/3 to-purple-600/3 rounded-full blur-2xl opacity-30"
         />
         <motion.div
           animate={{
             rotate: [360, 0],
-            scale: [1, 1.2, 1],
+            scale: [1, 1.1, 1],
           }}
           transition={{
             duration: 35,
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -bottom-32 -right-32 w-96 h-96 bg-linear-to-br from-purple-600/5 to-[#FF4FD8]/5 rounded-full blur-3xl"
+          className="absolute -bottom-32 -right-32 w-72 h-72 bg-linear-to-br from-purple-600/3 to-[#FF4FD8]/3 rounded-full blur-2xl opacity-30"
         />
       </div>
 
@@ -55,7 +61,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col relative z-10 w-full pb-20 md:pb-0 md:ml-[var(--sidebar-width)]">
+      <div className="flex flex-col min-h-screen relative z-10 w-full pb-20 md:pb-0">
         {/* Mobile Menu Button */}
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -71,12 +77,12 @@ export default function Layout({ children }: { children: ReactNode }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className={cn(
-            "flex-1 relative bg-transparent ml-0 transition-all duration-300",
-            sidebarCollapsed ? "md:ml-24" : "md:ml-68"
+            "flex-1 relative bg-transparent ml-0 transition-all duration-300 flex flex-col",
+            sidebarCollapsed ? "md:ml-20" : "md:ml-64"
           )}
         >
           <Header />
-          {children}
+          <div className="flex-1 p-4">{children}</div>
         </motion.main>
       </div>
     </div>
