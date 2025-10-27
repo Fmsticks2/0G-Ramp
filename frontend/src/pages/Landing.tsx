@@ -227,7 +227,7 @@ export default function Landing() {
                 to="/dashboard"
                 className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-2xl bg-linear-to-r from-accent to-purple-600 text-white shadow-2xl overflow-hidden"
                 style={{
-                  boxShadow: "0 0 40px rgba(255, 79, 216, 0.4)",
+                  boxShadow: "0 0 40px rgba(255, 79, 216, 0.2)",
                 }}
               >
                 <motion.div
@@ -359,11 +359,11 @@ export default function Landing() {
               >
                 <motion.div className="absolute inset-0 bg-linear-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <motion.div
-                  className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br from-accent to-purple-600 mb-6 relative z-10"
+                  className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br  from-accent/70 to-purple-600/20 mb-6 relative z-10 backdrop-blur-sm"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                   style={{
-                    boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)",
+                    boxShadow: "0 0 20px rgba(255, 79, 216, 0.15)",
                   }}
                 >
                   <Icon icon={feature.icon} className="text-3xl text-white" />
@@ -460,11 +460,11 @@ export default function Landing() {
                 className="relative text-center group"
               >
                 <motion.div
-                  className="relative inline-flex items-center justify-center w-32 h-32 rounded-full bg-linear-to-br from-accent to-purple-600 mb-8"
-                  whileHover={{ scale: 1.1, rotate: 360 }}
+                  className="relative inline-flex items-center justify-center w-32 h-32 rounded-full bg-linear-to-br from-accent/70 to-purple-600/20 mb-8 backdrop-blur-sm"
+                  whileHover={{ scale: 1.05, rotate: 360 }}
                   transition={{ duration: 0.6 }}
                   style={{
-                    boxShadow: "0 0 50px rgba(255, 79, 216, 0.5)",
+                    boxShadow: "0 0 30px rgba(255, 79, 216, 0.2)",
                   }}
                 >
                   <Icon icon={step.icon} className="text-5xl text-white" />
@@ -531,11 +531,11 @@ export default function Landing() {
                 className="text-center group relative"
               >
                 <motion.div
-                  className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br from-accent to-purple-600 mb-6 relative z-10"
+                  className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br  from-accent/70 to-purple-600/20 mb-6 relative z-10"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                   style={{
-                    boxShadow: "0 0 30px rgba(255, 79, 216, 0.4)",
+                    boxShadow: "0 0 30px rgba(255, 79, 216, 0.2)",
                   }}
                 >
                   <Icon icon={stat.icon} className="text-3xl text-white" />
@@ -609,9 +609,9 @@ export default function Landing() {
             >
               <Link
                 to="/dashboard"
-                className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-2xl bg-linear-to-r from-accent to-purple-600 text-white shadow-2xl overflow-hidden"
+                className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-2xl bg-linear-to-r  from-accent to-purple-600 text-white shadow-2xl overflow-hidden"
                 style={{
-                  boxShadow: "0 0 40px rgba(255, 79, 216, 0.4)",
+                  boxShadow: "0 0 40px rgba(255, 79, 216, 0.2)",
                 }}
               >
                 <motion.div
