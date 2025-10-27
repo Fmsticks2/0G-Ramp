@@ -24,7 +24,7 @@ export default function Header() {
             <Icon icon="mdi:lightning-bolt" className="text-pink-400 text-xl" />
             <div className="absolute inset-0 bg-pink-400/20 rounded-full blur-md" />
           </motion.div>
-          <span className="font-medium bg-gradient-to-r from-white to-pink-400 bg-clip-text text-transparent">
+          <span className="font-medium bg-linear-to-r from-white to-pink-400 bg-clip-text text-transparent">
             RampFlow
           </span>
         </div>
